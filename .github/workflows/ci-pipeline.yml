@@ -1,0 +1,45 @@
+name: AI DevOps CI Pipeline
+
+on:
+  push:
+    branches: [ "main", "master" ]
+
+jobs:
+  build-and-monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Run Build (And Capture Errors)
+      # We pipe the output to a file so we can read it if it fails
+      run: npm run build > build.log 2>&1
+
+    - name: Send Error to AI Assistant
+      # This 'if' statement is the magic: it ONLY runs if the build step above fails
+      if: failure() 
+      run: |
+        echo "🚨 Build failed! Extracting logs..."
+        
+        # Grab the last 50 lines of the error log
+        ERROR_LOG=$(tail -n 50 build.log)
+        
+        # Package it into a clean JSON format
+        jq -n \
+          --arg name "GitHub-Action-#${{ github.run_number }}" \
+          --arg log "$ERROR_LOG" \
+          '{buildName: $name, logOutput: $log}' > payload.json
+        
+        # IMPORTANT: Replace the URL below with your actual localtunnel or ngrok URL
+        curl -X POST "https://YOUR_LOCALTUNNEL_URL.loca.lt/api/webhook" \
+          -H "Content-Type: application/json" \
+          -d @payload.json
