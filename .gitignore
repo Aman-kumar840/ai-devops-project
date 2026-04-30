@@ -1,0 +1,14 @@
+# Environment Variables (THE MOST IMPORTANT ONE!)
+.env
+.env.*
+
+# Dependency directories (This stops those 8,000+ files from uploading)
+node_modules/
+
+# Build outputs
+build/
+dist/
+
+# OS generated files
+.DS_Store
+*.pem
