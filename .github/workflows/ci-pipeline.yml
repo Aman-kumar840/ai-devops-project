@@ -7,6 +7,11 @@ on:
 jobs:
   build-and-monitor:
     runs-on: ubuntu-latest
+    
+    # 🚨 THIS IS THE MISSING PIECE: It tells GitHub to go into your React folder first!
+    defaults:
+      run:
+        working-directory: ./ai-devops-frontend
 
     steps:
     - name: Checkout Code
@@ -18,14 +23,14 @@ jobs:
         node-version: '18.x'
 
     - name: Install Dependencies
-      run: npm install
+      # We pipe this to build.log so if install fails, the AI gets the install error!
+      run: npm install > build.log 2>&1
 
     - name: Run Build (And Capture Errors)
-      # We pipe the output to a file so we can read it if it fails
-      run: npm run build > build.log 2>&1
+      # We use >> to append to the log instead of overwriting it
+      run: npm run build >> build.log 2>&1
 
     - name: Send Error to AI Assistant
-      # This 'if' statement is the magic: it ONLY runs if the build step above fails
       if: failure() 
       run: |
         echo "🚨 Build failed! Extracting logs..."
