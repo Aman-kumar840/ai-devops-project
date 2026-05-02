@@ -45,6 +45,6 @@ jobs:
           '{buildName: $name, logOutput: $log}' > payload.json
         
         # IMPORTANT: Replace the URL below with your actual localtunnel or ngrok URL
-        curl -X POST "https://evil-rocks-swim.loca.lt/api/webhook" \
+        curl -X POST "https://beige-friends-vanish.loca.lt/api/webhook" \
           -H "Content-Type: application/json" \
           -d @payload.json
