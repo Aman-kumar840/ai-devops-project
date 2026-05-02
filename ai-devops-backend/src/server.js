@@ -68,7 +68,13 @@ async function analyzeLogWithMemory(rawLog, buildName) {
         response_format: { type: "json_object" }
     });
 
+    // 🚨 Extract and parse the response from Groq
     const groqResponse = JSON.parse(chatCompletion.choices[0].message.content);
+
+    // Ensure explanation is a string (flatten array if necessary)
+    const formattedExplanation = Array.isArray(groqResponse.explanation) 
+        ? groqResponse.explanation.join('\n') 
+        : groqResponse.explanation;
 
     // 5. Save to database
     console.log("-> Saving analysis to database...");
@@ -77,7 +83,7 @@ async function analyzeLogWithMemory(rawLog, buildName) {
             buildName: buildName,
             rawLog: rawLog,
             rootCause: groqResponse.rootCause,
-            explanation: groqResponse.explanation,
+            explanation: formattedExplanation, // <-- Formatted string used here!
             status: 'COMPLETED'
         }
     });
