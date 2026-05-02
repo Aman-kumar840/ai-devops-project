@@ -44,7 +44,7 @@ jobs:
           --arg log "$ERROR_LOG" \
           '{buildName: $name, logOutput: $log}' > payload.json
         
-        curl -X POST "https://beige-friends-vanish.loca.lt/api/webhook" \
+        curl -X POST "https://six-baboons-like.loca.lt/api/webhook" \
          -H "Content-Type: application/json" \
          -H "Bypass-Tunnel-Reminder: true" \
          -d @payload.json
