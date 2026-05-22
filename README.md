@@ -72,8 +72,11 @@ It captures failed webhook events, generates vector embeddings of error logs usi
 ```bash
 git clone https://github.com/Aman-kumar840/ai-devops-project.git
 cd ai-devops-project
+```
 
-## 2. Backend Setup
+---
+
+## 2️⃣ Backend Setup
 
 ```bash
 cd ai-devops-backend
@@ -96,7 +99,9 @@ npx prisma db push
 node src/server.js
 ```
 
-## 3. Frontend Setup
+---
+
+## 3️⃣ Frontend Setup
 
 Open a new terminal window:
 
@@ -106,7 +111,9 @@ npm install
 npm run dev
 ```
 
-## 4. Start the Webhook Tunnel
+---
+
+## 4️⃣ Start the Webhook Tunnel
 
 Open a third terminal window to expose your local backend to GitHub:
 
@@ -116,6 +123,8 @@ npx localtunnel --port 3000
 
 Note: Copy the generated URL and update your `.github/workflows/ci-pipeline.yml` file with this new URL. Ensure you keep the `-H "Bypass-Tunnel-Reminder: true"` flag in your curl command.
 
+---
+
 # 🧪 Testing the Pipeline
 
 To see the AI in action:
@@ -124,9 +133,11 @@ To see the AI in action:
 2. Commit and push the changes to GitHub.
 3. Watch the GitHub Action fail, the backend terminal process the AI prompt, and the React dashboard update with the live diagnosis!
 
+---
+
 # 👨‍💻 Author
 
 ## Aman Kumar
 
-- LinkedIn
-- GitHub
+- LinkedIn: https://www.linkedin.com/in/aman-kumar-016927308/
+- GitHub: https://github.com/Aman-kumar840
