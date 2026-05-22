@@ -16,5 +16,5 @@ function App() {
       </div>
     </Router>
   );
-// MISSING CLOSING BRACE HERE
+}
 export default App;
