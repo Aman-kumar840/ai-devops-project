@@ -1,4 +1,4 @@
-# 🚀 AI-Powered DevOps Pipeline
+# 🚀 Autonomous SRE Agent
 
 An intelligent, self-healing CI/CD monitor that intercepts failed builds, vectorizes error logs, and leverages Large Language Models (Llama 3) to instantly diagnose root causes and suggest step-by-step fixes.
 
@@ -70,8 +70,8 @@ It captures failed webhook events, generates vector embeddings of error logs usi
 ## 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/Aman-kumar840/ai-devops-project.git
-cd ai-devops-project
+git clone https://github.com/Aman-kumar840/autonomous-sre-agent-project.git
+cd autonomous-sre-agent-project
 ```
 
 ---
@@ -79,11 +79,11 @@ cd ai-devops-project
 ## 2️⃣ Backend Setup
 
 ```bash
-cd ai-devops-backend
+cd autonomous-sre-agent-backend
 npm install
 ```
 
-Create a `.env` file in the `ai-devops-backend` directory:
+Create a `.env` file in the `autonomous-sre-agent-backend` directory:
 
 ```env
 PORT=3000
@@ -106,7 +106,7 @@ node src/server.js
 Open a new terminal window:
 
 ```bash
-cd ai-devops-frontend
+cd autonomous-sre-agent-frontend
 npm install
 npm run dev
 ```
@@ -129,7 +129,7 @@ Note: Copy the generated URL and update your `.github/workflows/ci-pipeline.yml`
 
 To see the AI in action:
 
-1. Make an intentional syntax error in `ai-devops-frontend/src/App.jsx`.
+1. Make an intentional syntax error in `autonomous-sre-agent-frontend/src/App.jsx`.
 2. Commit and push the changes to GitHub.
 3. Watch the GitHub Action fail, the backend terminal process the AI prompt, and the React dashboard update with the live diagnosis!
 
